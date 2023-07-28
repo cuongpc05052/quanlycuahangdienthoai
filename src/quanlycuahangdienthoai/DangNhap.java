@@ -4,6 +4,9 @@
  */
 package quanlycuahangdienthoai;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Acer
@@ -46,8 +49,18 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel3.setText("Mật khẩu");
 
         btnLogin.setText("Đăng nhập");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnExit.setText("Thoát");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +113,16 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        login();
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -144,4 +167,30 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
+
+     public void login(){
+        if (checkrong() == false) {
+            return;
+        }
+        setVisible(true);
+        if (txtName.getText().equalsIgnoreCase("user1") && txtPass.getText().equals("123")) {
+            SanPham qlsp = new SanPham();
+            setVisible(false);
+            qlsp.setVisible(true);            
+        }else{
+            JOptionPane.showMessageDialog(this, "Dang nhap that bai!\n Sai ten dang nhap hoac mat khau!");
+        }
+    }
+    
+    public boolean checkrong(){
+        if (txtName.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Chua nhap user name!");
+            return false;
+        }
+        if (txtPass.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Chua nhap password!");
+            return false;
+        }
+        return true;
+    }
 }
